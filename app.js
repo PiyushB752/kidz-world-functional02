@@ -120,7 +120,7 @@ function updatePrice() {
   finalCents = totalPriceInCents % 100;
 }
 
-
+let order = ""
 cartButton.onclick = () => {
   updatePrice();
 
@@ -140,3 +140,11 @@ cartButton.onclick = () => {
     "The total amount is " + finalDollars + "$ and " + finalCents + " cents"
   );
 };
+
+
+document.getElementById("cart").addEventListener("click", function() {
+  const num = "+919000000000"; 
+  const msg= "The total amount is " + finalDollars + "$ and " + finalCents + " cents";
+  const whatsappURL = `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+  window.open(whatsappURL, "_blank");
+});
