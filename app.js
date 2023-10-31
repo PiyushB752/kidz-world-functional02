@@ -120,9 +120,29 @@ function updatePrice() {
   finalCents = totalPriceInCents % 100;
 }
 
+
+
+
+var whatsappLink = "https://api.whatsapp.com/send?phone=919000000000&text=Order%20details:";;
+function updateWhatappLink() {
+  for (let index = 0; index < items.length; index++) {
+    if (items[index].quantity != 0) {
+      whatsappLink += "%0A" + items[index].name + "%20" + items[index].quantity;
+    }
+  }
+  whatsappLink += "%0A" + "Total%20Price:%20$" + finalDollars + "%20" + finalCents + "c";
+}
+
+
+
+
+
+
 let order = ""
 cartButton.onclick = () => {
   updatePrice();
+  updateWhatappLink();
+  window.open(whatsappLink,"_blank")
 
 
   for (let index = 0; index < items.length; index++) {
@@ -142,9 +162,13 @@ cartButton.onclick = () => {
 };
 
 
-document.getElementById("cart").addEventListener("click", function() {
-  const num = "+919000000000"; 
-  const msg= "The total amount is " + finalDollars + "$ and " + finalCents + " cents";
-  const whatsappURL = `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
-  window.open(whatsappURL, "_blank");
-});
+// document.getElementById("cart").addEventListener("click", function() {
+//   const num = "+919000000000"; 
+//   const msg= "The total amount is " + finalDollars + "$ and " + finalCents + " cents";
+//   const whatsappURL = `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+//   window.open(whatsappURL, "_blank");
+// });
+
+
+
+
